@@ -1,490 +1,1445 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diócesis de Huacho | Sitio Oficial</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        church: {
-                            50: '#fdf8f6',
-                            100: '#fbe8e1',
-                            600: '#8b263e',
-                            700: '#701e31',
-                            800: '#5a1727',
-                            900: '#42101b',
-                        },
-                        gold: {
-                            500: '#d4af37',
-                            600: '#b89728',
-                        }
-                    }
-                }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diócesis de Huacho – Perú | Portal Institucional</title>
+  <meta name="description" content="Portal web institucional de la Diócesis de Huacho – Perú (Dioecesis Huachensis). Historia, territorio, parroquias, templos, celebraciones, autoridades, obras y contacto." />
+  <link rel="icon" href="https://iglesia.org.pe/wp-content/uploads/2018/10/HUACHO-LOGO.jpg" type="image/jpeg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Cinzel', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            diocese: {
+              navy: '#0F2537',
+              blue: '#1B3B5A',
+              gold: '#C59B27',
+              goldLight: '#F3E7C3',
+              cream: '#FAF8F5',
+              burgundy: '#6E1E2A'
             }
+          }
         }
-    </script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FAF8F5;
+      color: #1E293B;
+    }
+    .page-section {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .page-section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Control estricto de imágenes (<1080px y proporción original sin distorsión) */
+    .img-bounded {
+      max-width: 100%;
+      max-height: 1080px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+    .img-card-frame {
+      background-color: #F1F5F9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-church-600 selection:text-white">
+<body class="font-sans antialiased flex flex-col min-h-screen">
 
-    <!-- Top Bar -->
-    <div class="bg-church-900 text-slate-200 text-xs py-2 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div class="flex items-center gap-4">
-                <span><i class="fas fa-map-marker-alt text-gold-500 mr-1"></i> Plaza de Armas s/n, Huacho, Perú</span>
-                <span><i class="fas fa-phone text-gold-500 mr-1"></i> (01) 239-3011</span>
-            </div>
-            <div class="flex items-center gap-3">
-                <a href="mailto:obispohuacho@gmail.com" class="hover:text-gold-500 transition" title="Correo"><i class="fas fa-envelope"></i> obispohuacho@gmail.com</a>
-                <a href="https://wa.me/" target="_blank" class="hover:text-gold-500 transition" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="https://facebook.com" target="_blank" class="hover:text-gold-500 transition" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://instagram.com" target="_blank" class="hover:text-gold-500 transition" title="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
+  <!-- Barra Superior Institucional -->
+  <div class="bg-diocese-navy text-slate-200 text-xs py-2 px-4 border-b border-diocese-gold/30">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-3">
+        <span class="font-semibold text-diocese-gold tracking-wider uppercase">Dioecesis Huachensis</span>
+        <span class="hidden sm:inline text-slate-400">|</span>
+        <span class="hidden sm:inline">Provincia Eclesiástica de Lima • Perú</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="tel:+5112393011" class="hover:text-diocese-gold transition">Tel: (01) 239-3011</a>
+        <span class="text-slate-500">|</span>
+        <a href="mailto:obispohuacho@gmail.com" class="hover:text-diocese-gold transition">obispohuacho@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabecera Principal y Navegación de 7 Secciones -->
+  <header class="bg-white shadow-md sticky top-0 z-40 border-b-2 border-diocese-gold">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Escudo y Título en la esquina superior izquierda -->
+        <a href="#inicio" onclick="navigateTo('inicio'); return false;" class="flex items-center gap-3 group shrink-0">
+          <img
+            src="https://iglesia.org.pe/wp-content/uploads/2018/10/HUACHO-LOGO.jpg"
+            alt="Escudo Oficial de la Diócesis de Huacho"
+            class="h-14 w-auto object-contain rounded shadow-sm border border-slate-200 bg-white p-0.5"
+            onerror="this.src='https://via.placeholder.com/80x80/0F2537/C59B27?text=DH'"
+          />
+          <div>
+            <h1 class="font-serif text-base sm:text-lg lg:text-xl font-bold text-diocese-navy leading-tight group-hover:text-diocese-blue transition">
+              Diócesis de Huacho – Perú
+            </h1>
+            <p class="text-[11px] sm:text-xs text-slate-500 font-medium tracking-wide">
+              «Una iglesia cercana, una fe que une»
+            </p>
+          </div>
+        </a>
+
+        <!-- Menú Horizontal de 7 Etiquetas para PC (md:flex) -->
+        <nav aria-label="Navegación Principal" class="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <button onclick="navigateTo('inicio')" data-nav="inicio" class="nav-link px-3 py-2 rounded-md text-sm font-semibold transition">Inicio</button>
+          <button onclick="navigateTo('diocesis')" data-nav="diocesis" class="nav-link px-3 py-2 rounded-md text-sm font-semibold transition">Diócesis</button>
+          <button onclick="navigateTo('templos')" data-nav="templos" class="nav-link px-3 py-2 rounded-md text-sm font-semibold transition">Templos</button>
+          <button onclick="navigateTo('celebraciones')" data-nav="celebraciones" class="nav-link px-3 py-2 rounded-md text-sm font-semibold transition">Celebraciones</button>
+          <button onclick="navigateTo('autoridades')" data-nav="autoridades" class="nav-link px-3 py-2 rounded-md text-sm font-semibold transition">Autoridades</button>
+          <button onclick="navigateTo('obras')" data-nav="obras" class="nav-link px-3 py-2 rounded-md text-sm font-semibold transition">Obras</button>
+          <button onclick="navigateTo('contacto')" data-nav="contacto" class="nav-link px-3 py-2 rounded-md text-sm font-semibold transition">Contacto</button>
+        </nav>
+
+        <!-- Botón Hamburguesa Exclusivo para Móvil (md:hidden) -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Abrir menú de navegación" class="p-2 rounded-lg text-diocese-navy hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-diocese-gold">
+            <svg id="icon-open" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="icon-close" class="h-7 w-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
+      </div>
     </div>
 
-    <!-- Main Navigation Header -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#inicio" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 rounded-full bg-church-700 flex items-center justify-center text-white shadow-lg group-hover:bg-church-800 transition">
-                    <i class="fas fa-church text-xl text-gold-500"></i>
+    <!-- Menú Desplegable Móvil -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+      <button onclick="navigateTo('inicio'); toggleMobileMenu()" data-nav="inicio" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-md text-base font-semibold">Inicio</button>
+      <button onclick="navigateTo('diocesis'); toggleMobileMenu()" data-nav="diocesis" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-md text-base font-semibold">Diócesis</button>
+      <button onclick="navigateTo('templos'); toggleMobileMenu()" data-nav="templos" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-md text-base font-semibold">Templos</button>
+      <button onclick="navigateTo('celebraciones'); toggleMobileMenu()" data-nav="celebraciones" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-md text-base font-semibold">Celebraciones</button>
+      <button onclick="navigateTo('autoridades'); toggleMobileMenu()" data-nav="autoridades" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-md text-base font-semibold">Autoridades</button>
+      <button onclick="navigateTo('obras'); toggleMobileMenu()" data-nav="obras" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-md text-base font-semibold">Obras</button>
+      <button onclick="navigateTo('contacto'); toggleMobileMenu()" data-nav="contacto" class="mobile-nav-link block w-full text-left px-3 py-2.5 rounded-md text-base font-semibold">Contacto</button>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL MULTIPÁGINA -->
+  <main class="flex-grow">
+
+    <!-- =====================================================================
+         PÁGINA 1: INICIO (Presentación Institucional + Historia de la Diócesis)
+         ===================================================================== -->
+    <section id="page-inicio" class="page-section active">
+      <!-- Banner Institucional de Portada -->
+      <div class="bg-gradient-to-br from-diocese-navy via-diocese-blue to-diocese-navy text-white py-12 lg:py-16 border-b-4 border-diocese-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-5">
+            <span class="inline-block bg-diocese-gold/20 text-diocese-gold border border-diocese-gold/40 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+              Portal Web Institucional
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+              «Una iglesia cercana, una fe que une»
+            </h2>
+            <p class="text-slate-200 text-base sm:text-lg leading-relaxed">
+              La <strong>Diócesis de Huacho</strong> es una jurisdicción territorial de la Iglesia católica que desarrolla su misión evangelizadora en las comunidades urbanas, rurales, costeras y andinas del norte del departamento de Lima.
+            </p>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              Su labor comprende la celebración de los sacramentos, la formación cristiana, la promoción de las vocaciones sacerdotales y religiosas, la educación católica y el servicio a las personas y familias, especialmente a quienes atraviesan situaciones de necesidad.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-3">
+              <button onclick="navigateTo('diocesis')" class="bg-diocese-gold text-diocese-navy font-bold px-5 py-2.5 rounded-lg hover:bg-amber-400 transition shadow">
+                Conocer Territorio y Parroquias
+              </button>
+              <button onclick="navigateTo('celebraciones')" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-5 py-2.5 rounded-lg transition">
+                Calendario de Celebraciones
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="bg-white/10 backdrop-blur-sm p-3 rounded-2xl border border-white/20 shadow-2xl">
+              <div class="img-card-frame rounded-xl bg-slate-900/60 max-h-[420px]">
+                <img
+                  src="https://images.openai.com/static-rsc-4/a5GrzBrAY43kWjU975VyoVgNBXieG08729M6hVJpdkgjD1_R0ic3JFnhsDdYaFRVN9xMa4mfArSMAreg-6EomGbvia3xAVlq_CI8psrvUV-zaEWOvMDksZD_9jZ_b830LVkOpqXoT_vUkdtymIL1OoBAs3-Gau4d7MJJw-LL4Uw?purpose=inline"
+                  alt="Presentación institucional de la Diócesis de Huacho"
+                  onclick="openImageModal(this.src, 'Presentación institucional – Diócesis de Huacho')"
+                  class="img-bounded max-h-[400px] cursor-zoom-in rounded-lg"
+                  onerror="this.src='https://via.placeholder.com/800x540/1B3B5A/FFFFFF?text=Di%C3%B3cesis+de+Huacho'"
+                />
+              </div>
+              <p class="text-xs text-slate-300 text-center mt-2">Haz clic en la imagen para ampliar • Diócesis de Huacho – Perú</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ficha Canónica Institucional -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+          <div class="border-l-4 border-diocese-gold pl-4 mb-6">
+            <h3 class="font-serif text-2xl font-bold text-diocese-navy">Identidad y Ficha Canónica</h3>
+            <p class="text-sm text-slate-500">Datos institucionales de la jurisdicción eclesiástica</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200/80">
+              <span class="block text-xs font-bold uppercase text-diocese-gold">Nombre oficial</span>
+              <span class="font-semibold text-diocese-navy text-base">Diócesis de Huacho</span>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200/80">
+              <span class="block text-xs font-bold uppercase text-diocese-gold">Denominación en latín</span>
+              <span class="font-semibold text-diocese-navy text-base italic">Dioecesis Huachensis</span>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200/80">
+              <span class="block text-xs font-bold uppercase text-diocese-gold">Iglesia</span>
+              <span class="font-semibold text-diocese-navy text-base">Católica, de rito latino</span>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200/80">
+              <span class="block text-xs font-bold uppercase text-diocese-gold">Dependencia eclesiástica</span>
+              <span class="font-semibold text-diocese-navy">Provincia eclesiástica de Lima (Sufragánea de la Arquidiócesis de Lima)</span>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200/80">
+              <span class="block text-xs font-bold uppercase text-diocese-gold">Sede episcopal</span>
+              <span class="font-semibold text-diocese-navy">Ciudad de Huacho, provincia de Huaura, departamento de Lima</span>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200/80">
+              <span class="block text-xs font-bold uppercase text-diocese-gold">Iglesia Catedral</span>
+              <span class="font-semibold text-diocese-navy">Catedral de San Bartolomé Apóstol</span>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200/80">
+              <span class="block text-xs font-bold uppercase text-diocese-gold">Fecha de creación</span>
+              <span class="font-semibold text-diocese-navy">15 de mayo de 1958</span>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200/80">
+              <span class="block text-xs font-bold uppercase text-diocese-gold">Documento de creación</span>
+              <span class="font-semibold text-diocese-navy">Bula pontificia <em>Egregiam Quidem</em>, promulgada por el papa Pío XII</span>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200/80">
+              <span class="block text-xs font-bold uppercase text-diocese-gold">Territorio</span>
+              <span class="font-semibold text-diocese-navy">Seis provincias del departamento de Lima</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Historia de la Diócesis -->
+        <div class="mt-12 space-y-10">
+          <div class="text-center max-w-3xl mx-auto">
+            <span class="text-xs font-bold uppercase tracking-widest text-diocese-gold">Memoria y Tradición</span>
+            <h3 class="font-serif text-3xl font-bold text-diocese-navy mt-1">Historia de la Diócesis</h3>
+            <p class="text-slate-600 mt-2 text-sm sm:text-base">
+              Desde la evangelización colonial en el siglo XVI hasta su erección canónica en 1958 y el caminar pastoral contemporáneo.
+            </p>
+          </div>
+
+          <!-- Antecedentes Históricos + Fotografías Históricas -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-6 space-y-4">
+              <h4 class="font-serif text-xl font-bold text-diocese-navy border-b border-slate-200 pb-2">
+                Antecedentes históricos
+              </h4>
+              <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
+                La presencia de la Iglesia católica en los territorios que actualmente conforman la Diócesis de Huacho se remonta al periodo colonial. Durante los siglos XVI al XVIII, diversas órdenes religiosas, entre ellas los <strong>jesuitas</strong> y los <strong>mercedarios</strong>, desarrollaron actividades de evangelización en las antiguas provincias de Chancay, Cajatambo y Canta.
+              </p>
+              <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
+                La vida religiosa de estas comunidades se articuló alrededor de parroquias, iglesias, cofradías, hermandades y celebraciones patronales, muchas de las cuales han contribuido a conservar la identidad religiosa y cultural de la región.
+              </p>
+              <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
+                El <strong>Archivo del Obispado</strong> conserva documentación histórica que permite estudiar esta evolución, incluyendo registros parroquiales que se remontan al siglo XVI.
+              </p>
+
+              <div class="pt-4">
+                <h4 class="font-serif text-xl font-bold text-diocese-navy border-b border-slate-200 pb-2 mb-3">
+                  Fundación de la Diócesis
+                </h4>
+                <ul class="space-y-2.5 text-slate-700 text-sm sm:text-base">
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-diocese-gold font-bold">•</span>
+                    <span>El <strong>13 de mayo de 1958</strong>, mediante la <strong>Ley N.º 13001</strong>, el Congreso de la República aprobó la creación del Obispado de Huacho.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-diocese-gold font-bold">•</span>
+                    <span>Dos días después, el <strong>15 de mayo de 1958</strong>, el <strong>papa Pío XII</strong> estableció oficialmente la Diócesis mediante la bula <em>Egregiam Quidem</em>.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-diocese-gold font-bold">•</span>
+                    <span>Su territorio fue constituido a partir de jurisdicciones que anteriormente pertenecían a la <strong>Arquidiócesis de Lima</strong> y a la <strong>Diócesis de Huaraz</strong>.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <figure class="bg-diocese-cream p-3 rounded-xl border border-slate-200">
+                <div class="img-card-frame rounded-lg h-56">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/Rk2x9uCS3rKcMFpIsA_QNVDmmAuKCCSb9PS9raGGozKTvKXPmcdBxkChdJfL0mIlWHOQTITp1aa19qUuAyJfel3Y-1e7mVSkNQtSx2kyEMA1miLJ4__qhATSrD9YdG389bQLjV_OwJrJVlW62yxCKNSTGkntrSQh1rhPVoNG9qg?purpose=inline"
+                    alt="Iglesia Parroquial San Bartolomé de Huacho"
+                    onclick="openImageModal(this.src, 'Iglesia Parroquial San Bartolomé de Huacho')"
+                    class="img-bounded max-h-56 cursor-zoom-in"
+                    onerror="this.src='https://via.placeholder.com/600x400/0F2537/FFFFFF?text=San+Bartolom%C3%A9'"
+                  />
+                </div>
+                <figcaption class="text-xs font-medium text-slate-600 mt-2 text-center">
+                  Iglesia Parroquial San Bartolomé de Huacho
+                </figcaption>
+              </figure>
+
+              <figure class="bg-diocese-cream p-3 rounded-xl border border-slate-200">
+                <div class="img-card-frame rounded-lg h-56">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/2qWrLLaOeM1TuHIqLcIbFQiTYI-_BICsLZjwfmh4U9r6VKJ8BhRffmVqXsJx4oPybPMJql44q925hK9nj4b6hpPci3-RpHIvN0y8oj72WB7SFzGCFg1ndgDKTW2vSktCgEJF2mUJHOvkT0jxyO8HMqFfAsuJ1eMlfgkaH6B-W3s?purpose=inline"
+                    alt="Antigua iglesia de San Bartolomé"
+                    onclick="openImageModal(this.src, 'Archivo histórico: Antigua iglesia de San Bartolomé')"
+                    class="img-bounded max-h-56 cursor-zoom-in"
+                    onerror="this.src='https://via.placeholder.com/600x400/0F2537/FFFFFF?text=Antigua+Iglesia'"
+                  />
+                </div>
+                <figcaption class="text-xs font-medium text-slate-600 mt-2 text-center">
+                  Antigua iglesia de San Bartolomé (memoria histórica)
+                </figcaption>
+              </figure>
+
+              <!-- Primer Obispo -->
+              <div class="sm:col-span-2 bg-diocese-navy text-white rounded-xl p-5 flex flex-col sm:flex-row items-center gap-5">
+                <div class="img-card-frame rounded-lg bg-slate-800 shrink-0 w-32 h-36 p-1 border border-diocese-gold/50">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3sMPqtvKNCBzcXRBDxBC5Ajwyl0R1PTGrQZCKBbnezVDrk30EqGHip18&s=10"
+                    alt="Mons. Nemesio Rivera Meza Denegrí"
+                    onclick="openImageModal(this.src, 'Mons. Nemesio Rivera Meza Denegrí – Primer Obispo de Huacho')"
+                    class="img-bounded max-h-32 cursor-zoom-in rounded"
+                    onerror="this.src='https://via.placeholder.com/240x300/1B3B5A/FFFFFF?text=Primer+Obispo'"
+                  />
+                </div>
+                <div class="space-y-1.5 text-center sm:text-left">
+                  <span class="text-xs font-bold uppercase tracking-wider text-diocese-gold">Primer Obispo de Huacho</span>
+                  <h5 class="font-serif text-lg font-bold">Mons. Nemesio Rivera Meza Denegrí</h5>
+                  <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    Fue el primer obispo de Huacho, nombrado en mayo de 1958. Recibió la consagración episcopal el 20 de julio de ese mismo año, iniciando la organización pastoral e institucional de la nueva diócesis.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sucesión Episcopal y Seminario -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+              <h4 class="font-serif text-xl font-bold text-diocese-navy mb-2">Principales etapas episcopales</h4>
+              <p class="text-sm text-slate-600 mb-4">La sucesión de obispos constituye una parte fundamental de la historia institucional:</p>
+              <div class="overflow-x-auto rounded-xl border border-slate-200">
+                <table class="min-w-full divide-y divide-slate-200 text-sm">
+                  <thead class="bg-diocese-navy text-white">
+                    <tr>
+                      <th class="px-4 py-3 text-left font-semibold">Obispo</th>
+                      <th class="px-4 py-3 text-left font-semibold">Periodo</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-200 bg-white">
+                    <tr class="hover:bg-slate-50">
+                      <td class="px-4 py-3 font-medium text-diocese-navy">Mons. Nemesio Rivera Meza</td>
+                      <td class="px-4 py-3 text-slate-600">1958–1960</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                      <td class="px-4 py-3 font-medium text-diocese-navy">Mons. Pablo Ramírez Taboado, SS.CC.</td>
+                      <td class="px-4 py-3 text-slate-600">1960–1966</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                      <td class="px-4 py-3 font-medium text-diocese-navy">Mons. Lorenzo León Alvarado, O. de M.</td>
+                      <td class="px-4 py-3 text-slate-600">1967–2003</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                      <td class="px-4 py-3 font-medium text-diocese-navy">Mons. Antonio Santarsiero Rosa, O.S.J.</td>
+                      <td class="px-4 py-3 text-slate-600">2004–2026</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <strong>Actualidad diocesana (julio de 2026):</strong> El papa León XIV aceptó la renuncia de Mons. Antonio Santarsiero Rosa y nombró a <strong>Mons. Luis Alberto Barrera Pacheco</strong> como Administrador Apostólico, para garantizar la continuidad del gobierno pastoral de la diócesis.
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 flex flex-col justify-between">
+              <div class="space-y-4">
+                <span class="inline-block bg-diocese-goldLight text-diocese-navy text-xs font-bold px-3 py-1 rounded-full">
+                  Vocaciones y Formación
+                </span>
+                <h4 class="font-serif text-xl font-bold text-diocese-navy">El Seminario Diocesano</h4>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  La formación sacerdotal constituye uno de los hitos de la historia diocesana. En <strong>1958</strong> se dispuso la creación del Seminario Diocesano, cuya inauguración oficial se realizó el <strong>17 de mayo de 1959</strong>.
+                </p>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  Actualmente se identifica como <strong>Seminario Diocesano Nuestra Señora del Carmen y San José</strong>, ubicado en Santa María, en el entorno de Huacho.
+                </p>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  Su misión es la formación humana, espiritual, intelectual y pastoral de quienes se preparan para el sacerdocio.
+                </p>
+              </div>
+              <div class="pt-6">
+                <button onclick="navigateTo('obras')" class="w-full bg-diocese-navy text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-diocese-blue transition text-sm">
+                  Ver más en Obras Diocesanas →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 2: DIÓCESIS (Territorio, Jurisdicción y 22 Parroquias)
+         ===================================================================== -->
+    <section id="page-diocesis" class="page-section">
+      <div class="bg-diocese-navy text-white py-10 border-b-4 border-diocese-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span class="text-xs font-bold uppercase tracking-widest text-diocese-gold">Jurisdicción Eclesiástica</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-1">Territorio y Parroquias</h2>
+          <p class="text-slate-300 mt-2 max-w-3xl text-sm sm:text-base">
+            Seis provincias del norte del departamento de Lima que integran comunidades costeras, valles interandinos y zonas altoandinas.
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+        <!-- Territorio y Mapa -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-5">
+            <h3 class="font-serif text-2xl font-bold text-diocese-navy">3. Territorio y jurisdicción eclesiástica</h3>
+            <p class="text-sm sm:text-base text-slate-700">
+              La Diócesis de Huacho tiene jurisdicción sobre seis provincias del departamento de Lima:
+            </p>
+
+            <div class="overflow-x-auto rounded-xl border border-slate-200">
+              <table class="min-w-full divide-y divide-slate-200 text-sm">
+                <thead class="bg-diocese-navy text-white">
+                  <tr>
+                    <th class="px-4 py-3 text-left font-semibold">Provincia</th>
+                    <th class="px-4 py-3 text-left font-semibold">Capital provincial</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 bg-white">
+                  <tr><td class="px-4 py-2.5 font-semibold text-diocese-navy">Barranca</td><td class="px-4 py-2.5 text-slate-600">Barranca</td></tr>
+                  <tr><td class="px-4 py-2.5 font-semibold text-diocese-navy">Cajatambo</td><td class="px-4 py-2.5 text-slate-600">Cajatambo</td></tr>
+                  <tr><td class="px-4 py-2.5 font-semibold text-diocese-navy">Canta</td><td class="px-4 py-2.5 text-slate-600">Canta</td></tr>
+                  <tr><td class="px-4 py-2.5 font-semibold text-diocese-navy">Huaral</td><td class="px-4 py-2.5 text-slate-600">Huaral</td></tr>
+                  <tr><td class="px-4 py-2.5 font-semibold text-diocese-navy">Huaura</td><td class="px-4 py-2.5 text-slate-600">Huacho</td></tr>
+                  <tr><td class="px-4 py-2.5 font-semibold text-diocese-navy">Oyón</td><td class="px-4 py-2.5 text-slate-600">Oyón</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div class="p-4 rounded-xl bg-sky-50 border border-sky-200">
+                <h4 class="font-bold text-diocese-navy text-sm">Zona costera</h4>
+                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                  Comunidades pesqueras, agrícolas y urbanas de Barranca y Huaura, así como sectores de Huaral.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+                <h4 class="font-bold text-diocese-navy text-sm">Valles interandinos</h4>
+                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                  Localidades agrícolas y poblaciones asentadas en los valles del norte de Lima.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-amber-50 border border-amber-200">
+                <h4 class="font-bold text-diocese-navy text-sm">Zona altoandina</h4>
+                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                  Comunidades de las provincias de Cajatambo y Oyón, además de sectores de Canta.
+                </p>
+              </div>
+            </div>
+
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Esta diversidad geográfica representa un desafío pastoral importante: la Iglesia debe atender tanto a las comunidades urbanas como a las poblaciones rurales y alejadas, adaptando su trabajo evangelizador a sus distintas realidades. La delimitación territorial está documentada por la Conferencia Episcopal Peruana y el Archivo Nacional de España.
+            </p>
+          </div>
+
+          <div class="lg:col-span-5">
+            <figure class="bg-diocese-cream p-4 rounded-2xl border border-slate-200">
+              <div class="img-card-frame rounded-xl max-h-[480px]">
+                <img
+                  src="https://images.openai.com/static-rsc-4/YiKM418egXAlteJFQvF0NSqIqtqjN2pwJN_r1REYoaCbBXF2G76F_ywtfMByLDkRJcpgXY66D6o2-rrKOPf4w_XCHPqibboBXxkdRKbIaSjUi959H-2G_2INk-0iOt68B-Nz6LhIk6_weB5X7BqzJ7I0YasFvgNIkaDl75E5XQw?purpose=inline"
+                  alt="Mapa territorial del Departamento de Lima – Jurisdicción de la Diócesis de Huacho"
+                  onclick="openImageModal(this.src, 'Mapa territorial de las provincias de Lima – Diócesis de Huacho')"
+                  class="img-bounded max-h-[460px] cursor-zoom-in"
+                  onerror="this.src='https://via.placeholder.com/500x650/0F2537/FFFFFF?text=Mapa+Jurisdicci%C3%B3n'"
+                />
+              </div>
+              <figcaption class="text-xs text-slate-500 text-center mt-2">
+                Ubicación territorial en el departamento de Lima (clic para ampliar)
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Parroquias y Comunidades Religiosas -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 space-y-6">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-diocese-navy">4. Parroquias y comunidades religiosas</h3>
+              <p class="text-sm text-slate-600 mt-1 max-w-3xl">
+                Las parroquias constituyen la principal organización territorial y pastoral de la diócesis: espacios de celebración de los sacramentos, formación cristiana, catequesis, acompañamiento familiar y acción comunitaria.
+              </p>
+            </div>
+            <div class="w-full md:w-72">
+              <label for="parish-search" class="sr-only">Buscar parroquia o localidad</label>
+              <input
+                id="parish-search"
+                type="text"
+                oninput="filterParishes()"
+                placeholder="Filtrar por provincia o parroquia..."
+                class="w-full px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-diocese-gold focus:border-diocese-gold outline-none"
+              />
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-blue-50 border border-blue-200 text-xs sm:text-sm text-slate-700">
+            <strong>Nota documental:</strong> El Archivo del Obispado conserva un directorio histórico con <strong>22 denominaciones parroquiales</strong>. Este directorio se presenta como referencia histórica y no como el listado actualizado y completo de parroquias, pues contiene información antigua sobre responsables y teléfonos.
+          </div>
+
+          <div class="overflow-x-auto rounded-xl border border-slate-200">
+            <table class="min-w-full divide-y divide-slate-200 text-sm">
+              <thead class="bg-diocese-navy text-white">
+                <tr>
+                  <th class="px-4 py-3 text-left font-semibold w-16">#</th>
+                  <th class="px-4 py-3 text-left font-semibold">Provincia / Localidad</th>
+                  <th class="px-4 py-3 text-left font-semibold">Parroquia (Directorio Histórico)</th>
+                </tr>
+              </thead>
+              <tbody id="parish-table-body" class="divide-y divide-slate-200 bg-white">
+                <!-- Se puebla dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 3: TEMPLOS (Iglesias, Templos y Santuarios Destacados)
+         ===================================================================== -->
+    <section id="page-templos" class="page-section">
+      <div class="bg-diocese-navy text-white py-10 border-b-4 border-diocese-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span class="text-xs font-bold uppercase tracking-widest text-diocese-gold">Patrimonio Religioso y Cultural</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-1">Iglesias, Templos y Santuarios Destacados</h2>
+          <p class="text-slate-300 mt-2 max-w-3xl text-sm sm:text-base">
+            La diócesis cuenta con un patrimonio religioso que combina templos históricos, iglesias parroquiales, capillas y lugares de peregrinación.
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+        <!-- Grid de Templos 5.1 al 5.6 -->
+        <div id="temples-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Renderizado dinámico -->
+        </div>
+
+        <!-- 5.7 Otros templos de interés -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+          <h3 class="font-serif text-xl font-bold text-diocese-navy mb-2">5.7. Otros templos de interés</h3>
+          <p class="text-sm text-slate-600 mb-4">Templos incluidos en el directorio patrimonial de la jurisdicción:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+            <div class="p-3.5 rounded-xl bg-diocese-cream border border-slate-200 font-medium text-diocese-navy">• Iglesia de San Ildefonso de Barranca</div>
+            <div class="p-3.5 rounded-xl bg-diocese-cream border border-slate-200 font-medium text-diocese-navy">• Iglesia de Santa María Magdalena de Supe</div>
+            <div class="p-3.5 rounded-xl bg-diocese-cream border border-slate-200 font-medium text-diocese-navy">• Iglesia de San Jerónimo de Pativilca</div>
+            <div class="p-3.5 rounded-xl bg-diocese-cream border border-slate-200 font-medium text-diocese-navy">• Iglesia de San Juan Bautista de Churín</div>
+            <div class="p-3.5 rounded-xl bg-diocese-cream border border-slate-200 font-medium text-diocese-navy">• Iglesia de la Inmaculada Concepción de Chancay</div>
+            <div class="p-3.5 rounded-xl bg-diocese-cream border border-slate-200 font-medium text-diocese-navy">• Iglesia de San Juan Bautista de Huaral</div>
+          </div>
+          <p class="text-xs text-slate-500 mt-4 italic">
+            Nota: Estas referencias proceden del directorio parroquial histórico; conviene verificar individualmente el estado, denominación y características patrimoniales de cada inmueble antes de describirlos como monumentos históricos o santuarios.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 4: CELEBRACIONES (Principales Fiestas Religiosas y Calendario)
+         ===================================================================== -->
+    <section id="page-celebraciones" class="page-section">
+      <div class="bg-diocese-navy text-white py-10 border-b-4 border-diocese-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-8">
+            <span class="text-xs font-bold uppercase tracking-widest text-diocese-gold">Piedad Popular y Calendario Litúrgico</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-1">Principales Fiestas Religiosas y Celebraciones</h2>
+            <p class="text-slate-300 mt-2 text-sm sm:text-base leading-relaxed">
+              La religiosidad popular constituye una de las expresiones más importantes de la identidad de las comunidades que integran la Diócesis de Huacho. Las fiestas patronales, procesiones, peregrinaciones y celebraciones de Semana Santa reúnen a parroquias, hermandades, mayordomías, familias y organizaciones de fieles.
+            </p>
+          </div>
+          <div class="lg:col-span-4">
+            <div class="img-card-frame rounded-xl bg-slate-900/60 p-2 border border-white/20 max-h-56">
+              <img
+                src="https://images.openai.com/static-rsc-4/_Nh80aEwpCV4nH4LOGlRGcLknXOjyHEIFZH5yM_CKdshvGzDeeXHh4ZNoEnpCmoK9yDag68F0ASdLXevYDog6wiV46qIySZnrURSabYd-8sGbsv_yrMaYUKp0TG88bxyogFagRvXVmqwbV0-9p6v3hUlAt2lgA0bNRBihzpfpfY?purpose=inline"
+                alt="Festividades religiosas en la Diócesis de Huacho"
+                onclick="openImageModal(this.src, 'Principales fiestas religiosas y celebraciones – Diócesis de Huacho')"
+                class="img-bounded max-h-52 cursor-zoom-in rounded-lg"
+                onerror="this.src='https://via.placeholder.com/600x400/1B3B5A/FFFFFF?text=Celebraciones'"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+        <!-- Filtros del Calendario -->
+        <div class="flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+          <div class="flex flex-wrap gap-2">
+            <button onclick="filterCelebrations('all')" data-cel-filter="all" class="cel-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-diocese-navy text-white">Todas</button>
+            <button onclick="filterCelebrations('patronal')" data-cel-filter="patronal" class="cel-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Fiestas Patronales</button>
+            <button onclick="filterCelebrations('mariana')" data-cel-filter="mariana" class="cel-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Devoción Mariana</button>
+            <button onclick="filterCelebrations('liturgica')" data-cel-filter="liturgica" class="cel-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Cuaresma y Procesiones</button>
+          </div>
+          <input
+            id="cel-search"
+            type="text"
+            oninput="renderCelebrations()"
+            placeholder="Buscar festividad o mes..."
+            class="w-full sm:w-64 px-3.5 py-1.5 border border-slate-300 rounded-lg text-sm outline-none focus:ring-2 focus:ring-diocese-gold"
+          />
+        </div>
+
+        <!-- Tarjetas de Celebraciones 6.1 al 6.7 -->
+        <div id="celebrations-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Renderizado dinámico -->
+        </div>
+
+        <!-- Otras celebraciones del calendario diocesano -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+          <h3 class="font-serif text-xl font-bold text-diocese-navy mb-2">Otras celebraciones del calendario diocesano</h3>
+          <p class="text-sm text-slate-600 mb-4">Festividades locales de especial arraigo en las provincias de la diócesis:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <span class="text-xs font-bold text-diocese-gold uppercase">24 de junio</span>
+              <h4 class="font-bold text-diocese-navy">San Juan Bautista</h4>
+              <p class="text-xs text-slate-600 mt-1">Celebrado con gran fervor en localidades como Huaral y Churín.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <span class="text-xs font-bold text-diocese-gold uppercase">29 de junio</span>
+              <h4 class="font-bold text-diocese-navy">San Pedro Apóstol</h4>
+              <p class="text-xs text-slate-600 mt-1">Especialmente arraigado en las comunidades pesqueras como Carquín y Supe Puerto.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <span class="text-xs font-bold text-diocese-gold uppercase">22 de julio</span>
+              <h4 class="font-bold text-diocese-navy">Santa María Magdalena</h4>
+              <p class="text-xs text-slate-600 mt-1">Celebrada en las comunidades que tienen esta advocación, como Cajatambo y Supe.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <span class="text-xs font-bold text-diocese-gold uppercase">24 de septiembre</span>
+              <h4 class="font-bold text-diocese-navy">Nuestra Señora de las Mercedes</h4>
+              <p class="text-xs text-slate-600 mt-1">Festividad patronal en Paramonga y comunidades de tradición mercedaria.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <span class="text-xs font-bold text-diocese-gold uppercase">30 de septiembre</span>
+              <h4 class="font-bold text-diocese-navy">San Jerónimo</h4>
+              <p class="text-xs text-slate-600 mt-1">Celebración tradicional en Pativilca y Sayán.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 5: AUTORIDADES (Autoridades Eclesiásticas y Organigrama)
+         ===================================================================== -->
+    <section id="page-autoridades" class="page-section">
+      <div class="bg-diocese-navy text-white py-10 border-b-4 border-diocese-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span class="text-xs font-bold uppercase tracking-widest text-diocese-gold">Gobierno Pastoral y Curia</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-1">Autoridades Eclesiásticas Actuales</h2>
+          <p class="text-slate-300 mt-2 max-w-3xl text-sm sm:text-base">
+            Conducción pastoral, administrativa y estructura institucional de la Diócesis de Huacho.
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+        <!-- Administrador Apostólico -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-4">
+            <div class="img-card-frame rounded-2xl border-2 border-diocese-gold/40 p-2 bg-diocese-cream max-h-[380px]">
+              <img
+                src="https://images.openai.com/static-rsc-4/u9sUS6gaOjj1fjiQdRH6C9gp0LKOOvEa4rJs_Ixz5GtjDZ6fwRld8_HNklJ921yg9AXy0-K5XlXljK_9LlYTkZrtYGCfOR_xgrpn9JZy_B5CPwb9Zyieo2OsHwWFd5d19h2VN3TadML7ALUcfgW72ktjPa5Twoqm9HezwCACbjQ?purpose=inline"
+                alt="Mons. Luis Alberto Barrera Pacheco, M.C.C.I."
+                onclick="openImageModal(this.src, 'Mons. Luis Alberto Barrera Pacheco, M.C.C.I. – Administrador Apostólico de Huacho')"
+                class="img-bounded max-h-[360px] cursor-zoom-in rounded-xl"
+                onerror="this.src='https://via.placeholder.com/400x480/0F2537/FFFFFF?text=Administrador+Apost%C3%B3lico'"
+              />
+            </div>
+          </div>
+
+          <div class="lg:col-span-8 space-y-4">
+            <span class="inline-block bg-diocese-goldLight text-diocese-navy text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              Administrador Apostólico desde julio de 2026
+            </span>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-diocese-navy">
+              Mons. Luis Alberto Barrera Pacheco, M.C.C.I.
+            </h3>
+            <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
+              El <strong>papa León XIV</strong> lo designó Administrador Apostólico de la Diócesis de Huacho el <strong>15 de julio de 2026</strong>, tras aceptar la renuncia de Mons. Antonio Santarsiero Rosa.
+            </p>
+            <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
+              Mons. Barrera Pacheco es también obispo de la Diócesis del Callao. Su nombramiento en Huacho tiene como finalidad asegurar la continuidad del gobierno pastoral y administrativo mientras se desarrolla el proceso correspondiente para la provisión de un nuevo obispo.
+            </p>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200 text-xs sm:text-sm text-slate-700">
+              <strong>Reconocimiento oficial del Estado peruano:</strong> Mediante <strong>Resolución Suprema N.º 161-2026-JUS</strong>, publicada el 14 de agosto de 2026.
+            </div>
+          </div>
+        </div>
+
+        <!-- Organigrama Institucional -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+          <h3 class="font-serif text-2xl font-bold text-diocese-navy mb-2">Organigrama Institucional y Responsables de Áreas Pastorales</h3>
+          <p class="text-sm text-slate-600 mb-6">Estructura orgánica de gobierno, asesoría canónica y acción pastoral de la diócesis:</p>
+
+          <!-- Nivel 1 -->
+          <div class="flex justify-center mb-6">
+            <div class="bg-diocese-navy text-white px-6 py-4 rounded-xl shadow-md border-2 border-diocese-gold text-center max-w-md w-full">
+              <span class="text-[11px] uppercase tracking-widest text-diocese-gold font-bold">Gobierno Diocesano</span>
+              <h4 class="font-serif text-lg font-bold mt-0.5">Administrador Apostólico</h4>
+              <p class="text-xs text-slate-300 mt-1">Mons. Luis Alberto Barrera Pacheco, M.C.C.I.</p>
+            </div>
+          </div>
+
+          <!-- Nivel 2: Curia -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-6">
+            <div class="bg-diocese-blue text-white p-4 rounded-xl text-center shadow-sm">
+              <span class="text-[11px] uppercase tracking-wider text-diocese-gold font-bold">Curia Diocesana</span>
+              <h5 class="font-bold text-base mt-0.5">Vicario General</h5>
+              <p class="text-xs text-slate-200 mt-1">Colaboración directa en el gobierno pastoral ordinario</p>
+            </div>
+            <div class="bg-diocese-blue text-white p-4 rounded-xl text-center shadow-sm">
+              <span class="text-[11px] uppercase tracking-wider text-diocese-gold font-bold">Curia Diocesana</span>
+              <h5 class="font-bold text-base mt-0.5">Canciller de la Curia Diocesana</h5>
+              <p class="text-xs text-slate-200 mt-1">Fe pública eclesiástica, actas y documentación oficial</p>
+            </div>
+          </div>
+
+          <!-- Nivel 3: Consejos y Organismos -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <span class="text-xs font-bold text-diocese-gold">Órgano Consultivo</span>
+              <h5 class="font-bold text-diocese-navy mt-1">Consejo Presbiteral</h5>
+              <p class="text-xs text-slate-600 mt-1">Representación del presbiterio que asiste al obispo en el gobierno pastoral.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <span class="text-xs font-bold text-diocese-gold">Gestión Económica</span>
+              <h5 class="font-bold text-diocese-navy mt-1">Consejo Diocesano de Asuntos Económicos</h5>
+              <p class="text-xs text-slate-600 mt-1">Administración transparente de los bienes temporales de la diócesis.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <span class="text-xs font-bold text-diocese-gold">Evangelización</span>
+              <h5 class="font-bold text-diocese-navy mt-1">Responsables de las Comisiones Pastorales</h5>
+              <p class="text-xs text-slate-600 mt-1">Catequesis, liturgia, juventud, familia, misiones y pastoral rural.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <span class="text-xs font-bold text-diocese-gold">Formación Sacerdotal</span>
+              <h5 class="font-bold text-diocese-navy mt-1">Director del Seminario Diocesano</h5>
+              <p class="text-xs text-slate-600 mt-1">Seminario Mayor Nuestra Señora del Carmen y San José (Santa María).</p>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <span class="text-xs font-bold text-diocese-gold">Educación Católica</span>
+              <h5 class="font-bold text-diocese-navy mt-1">Responsable de la ODEC Huacho</h5>
+              <p class="text-xs text-slate-600 mt-1">Oficina Diocesana de Educación Católica.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <span class="text-xs font-bold text-diocese-gold">Acción Caritativa</span>
+              <h5 class="font-bold text-diocese-navy mt-1">Coordinadores de Cáritas y Obras Sociales</h5>
+              <p class="text-xs text-slate-600 mt-1">Promoción humana, asistencia solidaria y ayuda comunitaria.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 6: OBRAS (Obras Sociales, Educativas y de Formación)
+         ===================================================================== -->
+    <section id="page-obras" class="page-section">
+      <div class="bg-diocese-navy text-white py-10 border-b-4 border-diocese-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span class="text-xs font-bold uppercase tracking-widest text-diocese-gold">Servicio, Educación y Cultura</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-1">Obras Sociales, Educativas y de Formación</h2>
+          <p class="text-slate-300 mt-2 max-w-3xl text-sm sm:text-base">
+            Dimensión social, educativa, vocacional y documental de la Iglesia al servicio de la comunidad.
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+        <!-- 8.1 ODEC -->
+        <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-4">
+            <div class="img-card-frame rounded-xl border border-slate-200 max-h-64">
+              <img
+                src="https://images.openai.com/static-rsc-4/ZZmrD28JFR7-KlfYuJwCK4bBUrhY9WpjfhwDtPrAWf_vOdNCvjSncY3VkVO34uS362vIva1TkAByXwRJfutv4niIvGN1Q7HPOt5PwECBOzIRozY2OWwPCVxg0zV15SbZwimFYIUyZAUHPrXpgUp3NGhW4WByz-2Zd4RmVvFR57I?purpose=inline"
+                alt="Oficina Diocesana de Educación Católica (ODEC)"
+                onclick="openImageModal(this.src, '8.1. Oficina Diocesana de Educación Católica (ODEC) – Huacho')"
+                class="img-bounded max-h-60 cursor-zoom-in"
+                onerror="this.src='https://via.placeholder.com/600x400/0F2537/FFFFFF?text=ODEC+Huacho'"
+              />
+            </div>
+          </div>
+          <div class="lg:col-span-8 space-y-3">
+            <span class="text-xs font-bold uppercase text-diocese-gold">8.1. Educación Católica</span>
+            <h3 class="font-serif text-2xl font-bold text-diocese-navy">Oficina Diocesana de Educación Católica (ODEC)</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              La ODEC es una instancia de la organización educativa de la Iglesia que acompaña y promueve la formación religiosa en las instituciones educativas de su jurisdicción.
+            </p>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700">
+              <li>• Promoción de la educación religiosa católica.</li>
+              <li>• Orientación y acompañamiento a docentes de Educación Religiosa.</li>
+              <li>• Formación y actualización de profesores.</li>
+              <li>• Coordinación de actividades educativas y pastorales.</li>
+              <li class="sm:col-span-2">• Promoción de valores cristianos en la comunidad educativa.</li>
+            </ul>
+            <p class="text-xs text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-200">
+              El directorio nacional de ONDEC identifica a la ODEC de Huacho y señala a Mons. Alejandro Alvites Bermúdez como su director, además de registrar su vinculación con la diócesis (dato sujeto a reconfirmación con la administración actual).
+            </p>
+          </div>
+        </article>
+
+        <!-- 8.2 Seminario Diocesano -->
+        <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-4 lg:order-2">
+            <div class="img-card-frame rounded-xl border border-slate-200 max-h-64">
+              <img
+                src="https://images.openai.com/static-rsc-4/Rp_bdpa42fXUAtwFGWoYJW10D5p9uyyKwevRGNNvg22K4nkY5_y71lTEBQuCC-4ntH8m_I0CIYnuwnEHItXJRyUb9JDaYKKQeb0WMdJcRUnYQjYfZM8bs1uhQpJwzRzW-hA2hRxNtHwZzpWzAmnFMIGNMZiyZjD1lzlarueTTBo?purpose=inline"
+                alt="Seminario Diocesano Nuestra Señora del Carmen y San José"
+                onclick="openImageModal(this.src, '8.2. Seminario Diocesano Nuestra Señora del Carmen y San José')"
+                class="img-bounded max-h-60 cursor-zoom-in"
+                onerror="this.src='https://via.placeholder.com/600x400/0F2537/FFFFFF?text=Seminario+Diocesano'"
+              />
+            </div>
+          </div>
+          <div class="lg:col-span-8 lg:order-1 space-y-3">
+            <span class="text-xs font-bold uppercase text-diocese-gold">8.2. Formación Sacerdotal</span>
+            <h3 class="font-serif text-2xl font-bold text-diocese-navy">Seminario Diocesano Nuestra Señora del Carmen y San José</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Es una de las instituciones fundamentales para la continuidad de la misión evangelizadora. Prepara a los futuros sacerdotes mediante un proceso integral de formación que comprende:
+            </p>
+            <div class="flex flex-wrap gap-2 text-xs font-semibold text-diocese-navy">
+              <span class="bg-diocese-cream border border-slate-200 px-3 py-1.5 rounded-lg">Formación espiritual</span>
+              <span class="bg-diocese-cream border border-slate-200 px-3 py-1.5 rounded-lg">Formación humana</span>
+              <span class="bg-diocese-cream border border-slate-200 px-3 py-1.5 rounded-lg">Estudios filosóficos y teológicos</span>
+              <span class="bg-diocese-cream border border-slate-200 px-3 py-1.5 rounded-lg">Formación pastoral</span>
+              <span class="bg-diocese-cream border border-slate-200 px-3 py-1.5 rounded-lg">Discernimiento y acompañamiento vocacional</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 font-medium">
+              <strong>Sede:</strong> Avenida San Martín 1317, distrito de Santa María, provincia de Huaura.
+            </p>
+          </div>
+        </article>
+
+        <!-- 8.3 Archivo del Obispado -->
+        <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-4">
+            <div class="img-card-frame rounded-xl border border-slate-200 max-h-64">
+              <img
+                src="https://images.openai.com/static-rsc-4/IVJlPOICvkfsN3dYYEh9m1Iw_9gNfqSU1tDCOeja8Z4WWJtjuOncWr5Q2dATm2B1tBfI_WvB_CRcaGfV1YnAqmU3gXmX0cwSVUJht-PXm4qHUEjmJH_nPwxZB9Zsg2oTB-pUOyP-tm5yneTNNsiO-u-Yy5L-cpjQrgcQl7ub_UQ?purpose=inline"
+                alt="Archivo del Obispado de Huacho"
+                onclick="openImageModal(this.src, '8.3. Archivo del Obispado de Huacho')"
+                class="img-bounded max-h-60 cursor-zoom-in"
+                onerror="this.src='https://via.placeholder.com/600x400/0F2537/FFFFFF?text=Archivo+Obispado'"
+              />
+            </div>
+          </div>
+          <div class="lg:col-span-8 space-y-3">
+            <span class="text-xs font-bold uppercase text-diocese-gold">8.3. Patrimonio Documental</span>
+            <h3 class="font-serif text-2xl font-bold text-diocese-navy">Archivo del Obispado de Huacho</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Institución de gran valor cultural e histórico, creada mediante <strong>Decreto Episcopal N.º 002-05</strong>, del 28 de marzo de 2005. Conserva, organiza y difunde la documentación histórica y administrativa de la Iglesia católica en la jurisdicción diocesana.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700">
+              <div>• Libros de bautismos, matrimonios y defunciones.</div>
+              <div>• Documentación de parroquias y cofradías.</div>
+              <div>• Registros de hermandades.</div>
+              <div>• Documentación de obispos y sacerdotes.</div>
+              <div>• Documentos de visitas pastorales.</div>
+              <div>• Registros del Seminario y de la ODEC.</div>
+            </div>
+            <p class="text-xs text-slate-600">
+              Fuente fundamental para investigadores, historiadores, genealogistas y personas interesadas en reconstruir la historia familiar y religiosa del norte de Lima.
+            </p>
+          </div>
+        </article>
+
+        <!-- 8.4 Cáritas y Acción Social -->
+        <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-4 lg:order-2">
+            <div class="img-card-frame rounded-xl border border-slate-200 max-h-64">
+              <img
+                src="https://images.openai.com/static-rsc-4/HcLuMjjSV1onXeMbU96VZ2f8zL7T78YJN8ArYoJFqwoLpJMJCtBmoEd4E1aj6h0GDRa6tTHbM-qp_-Tc1fibQBn_NSTuNHi5a5aAJC6CvVMCrwJU4ZiixIVDfXB3a7mRWhgxPf-NLX7qmmHajjRo8TkW7tqrRJ7847-GSrhDnI0?purpose=inline"
+                alt="Cáritas y acción social"
+                onclick="openImageModal(this.src, '8.4. Cáritas y acción social – Diócesis de Huacho')"
+                class="img-bounded max-h-60 cursor-zoom-in"
+                onerror="this.src='https://via.placeholder.com/600x400/0F2537/FFFFFF?text=C%C3%A1ritas+Huacho'"
+              />
+            </div>
+          </div>
+          <div class="lg:col-span-8 lg:order-1 space-y-3">
+            <span class="text-xs font-bold uppercase text-diocese-gold">8.4. Pastoral Caritativa</span>
+            <h3 class="font-serif text-2xl font-bold text-diocese-navy">Cáritas y acción social</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              La acción caritativa constituye una dimensión esencial de la misión de la Iglesia. En la documentación del Archivo del Obispado aparece la serie documental correspondiente a Cáritas, lo que acredita su vinculación con la estructura institucional histórica.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700">
+              <div>• Atención a familias vulnerables.</div>
+              <div>• Apoyo a adultos mayores.</div>
+              <div>• Asistencia a personas en situación de pobreza.</div>
+              <div>• Campañas de solidaridad y ayuda humanitaria.</div>
+              <div>• Apoyo ante emergencias y desastres.</div>
+              <div>• Promoción del desarrollo comunitario.</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8.5 Obras Educativas y de Salud -->
+        <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-4">
+            <div class="img-card-frame rounded-xl border border-slate-200 max-h-64">
+              <img
+                src="https://scontent.flim39-1.fna.fbcdn.net/v/t39.30808-6/484998103_636846439104605_9001091008627739991_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=107&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kgmpwhXkKv8Q7kNvwEIH90c&_nc_oc=AdoLxC3Q-Ks2mn5oOn3lyCmF5VchZMAY6ECJ2JaHRrls--YHEOTlypOJ4hN1fz_UGIA&_nc_zt=23&_nc_ht=scontent.flim39-1.fna&_nc_gid=IiXj0q_g_edaW7aT3qGwXw&_nc_ss=7a2a8&oh=00_AQT1zGh8ykJexwdDtyaXnhILLE4VEoXypoAD8MnPAYriJQ&oe=6B05911A"
+                alt="Centro Parroquial Santa Rosa de Lima, en Huacho"
+                onclick="openImageModal(this.src, '8.5. Centro Parroquial Santa Rosa de Lima – Huacho')"
+                class="img-bounded max-h-60 cursor-zoom-in"
+                onerror="this.src='https://via.placeholder.com/600x400/0F2537/FFFFFF?text=Centro+Parroquial+Santa+Rosa'"
+              />
+            </div>
+          </div>
+          <div class="lg:col-span-8 space-y-3">
+            <span class="text-xs font-bold uppercase text-diocese-gold">8.5. Servicio Comunitario</span>
+            <h3 class="font-serif text-2xl font-bold text-diocese-navy">Obras educativas y de salud</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Instituciones educativas, centros de atención médica y servicios comunitarios que mantienen una vinculación formal con el Obispado, las parroquias o las congregaciones religiosas presentes en la jurisdicción.
+            </p>
+            <div class="p-4 rounded-xl bg-diocese-cream border border-slate-200">
+              <h4 class="font-bold text-diocese-navy text-sm">Centro Parroquial Santa Rosa de Lima – Huacho</h4>
+              <p class="text-xs text-slate-600 mt-1">
+                Obra parroquial de servicio educativo, formativo y comunitario al servicio de la niñez, juventud y familias de Huacho.
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PÁGINA 7: CONTACTO (Sede Institucional, Dependencias y Canales)
+         ===================================================================== -->
+    <section id="page-contacto" class="page-section">
+      <div class="bg-diocese-navy text-white py-10 border-b-4 border-diocese-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span class="text-xs font-bold uppercase tracking-widest text-diocese-gold">Atención y Comunicación</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-1">Información de Contacto y Sede Institucional</h2>
+          <p class="text-slate-300 mt-2 max-w-3xl text-sm sm:text-base">
+            La sede principal de la Diócesis se encuentra en la ciudad de Huacho, provincia de Huaura, departamento de Lima.
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Datos del Obispado y Dependencias -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+              <h3 class="font-serif text-xl font-bold text-diocese-navy mb-4">Obispado de Huacho (Sede Principal)</h3>
+              <div class="overflow-x-auto rounded-xl border border-slate-200">
+                <table class="min-w-full divide-y divide-slate-200 text-sm">
+                  <tbody class="divide-y divide-slate-200">
+                    <tr>
+                      <td class="px-4 py-3 font-semibold text-diocese-navy bg-diocese-cream w-44">Institución</td>
+                      <td class="px-4 py-3 text-slate-700">Obispado de Huacho</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 font-semibold text-diocese-navy bg-diocese-cream">Dirección institucional</td>
+                      <td class="px-4 py-3 text-slate-700">Plaza de Armas s/n, Huacho</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 font-semibold text-diocese-navy bg-diocese-cream">Apartado postal</td>
+                      <td class="px-4 py-3 text-slate-700">104</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 font-semibold text-diocese-navy bg-diocese-cream">Teléfono</td>
+                      <td class="px-4 py-3 text-slate-700"><a href="tel:+5112393011" class="text-diocese-blue font-semibold hover:underline">(01) 239-3011</a></td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 font-semibold text-diocese-navy bg-diocese-cream">Correo electrónico</td>
+                      <td class="px-4 py-3 text-slate-700"><a href="mailto:obispohuacho@gmail.com" class="text-diocese-blue font-semibold hover:underline">obispohuacho@gmail.com</a></td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 font-semibold text-diocese-navy bg-diocese-cream">Ubicación</td>
+                      <td class="px-4 py-3 text-slate-700">Departamento de Lima, Perú</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Otras Referencias de Contacto -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-2">
+                <span class="text-xs font-bold uppercase text-diocese-gold">Patrimonio y Registros</span>
+                <h4 class="font-serif text-lg font-bold text-diocese-navy">Archivo del Obispado de Huacho</h4>
+                <p class="text-xs text-slate-600"><strong>Dirección:</strong> Av. Grau N.º 581, esquina con la Plaza de Armas, tercer piso.</p>
+                <p class="text-xs text-slate-600"><strong>Teléfono:</strong> (01) 239-3011</p>
+                <p class="text-xs text-slate-600"><strong>Correo:</strong> <a href="mailto:archivo.huacho@gmail.com" class="text-diocese-blue hover:underline">archivo.huacho@gmail.com</a></p>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-2">
+                <span class="text-xs font-bold uppercase text-diocese-gold">Educación Religiosa</span>
+                <h4 class="font-serif text-lg font-bold text-diocese-navy">ODEC Huacho</h4>
+                <p class="text-xs text-slate-600"><strong>Dirección registrada:</strong> Av. Grau N.º 581, Huacho.</p>
+                <p class="text-xs text-slate-600"><strong>Director (directorio nacional):</strong> Mons. Alejandro Alvites Bermúdez.</p>
+                <p class="text-xs text-slate-600"><strong>Correo registrado:</strong> <a href="mailto:directorodec@yahoo.com" class="text-diocese-blue hover:underline">directorodec@yahoo.com</a></p>
+              </div>
+            </div>
+
+            <!-- Canales Digitales Oficiales -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+              <h4 class="font-serif text-lg font-bold text-diocese-navy">Canales Digitales y Directorios Eclesiásticos</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                <a href="https://iglesia.org.pe/obispados/" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-xl bg-diocese-cream border border-slate-200 hover:border-diocese-gold transition flex items-center justify-between">
+                  <span class="font-semibold text-diocese-navy">Directorio de Obispados – Conferencia Episcopal Peruana</span>
+                  <span class="text-diocese-gold font-bold">↗</span>
+                </a>
+                <a href="https://iglesia.org.pe/" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-xl bg-diocese-cream border border-slate-200 hover:border-diocese-gold transition flex items-center justify-between">
+                  <span class="font-semibold text-diocese-navy">Directorio Eclesiástico – Comisión Episcopal de Comunicación</span>
+                  <span class="text-diocese-gold font-bold">↗</span>
+                </a>
+              </div>
+              <div class="pt-2 flex flex-wrap gap-3">
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-blue-700 text-white text-xs font-semibold hover:bg-blue-800 transition">Facebook Oficial</a>
+                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-red-600 text-white text-xs font-semibold hover:bg-red-700 transition">Canal de YouTube</a>
+                <a href="mailto:obispohuacho@gmail.com" class="px-4 py-2 rounded-lg bg-diocese-navy text-white text-xs font-semibold hover:bg-diocese-blue transition">Escribir al Obispado</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario de Consulta -->
+          <div class="lg:col-span-5">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+              <h3 class="font-serif text-xl font-bold text-diocese-navy mb-2">Enviar Consulta Institucional</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mb-5">
+                Completa el formulario para dirigir una consulta a la Secretaría del Obispado, Archivo Diocesano u ODEC.
+              </p>
+              <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Área de destino</label>
+                  <select id="contact-area" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-diocese-gold outline-none">
+                    <option value="obispohuacho@gmail.com">Obispado de Huacho (Secretaría General)</option>
+                    <option value="archivo.huacho@gmail.com">Archivo del Obispado (Partidas y registros)</option>
+                    <option value="directorodec@yahoo.com">ODEC Huacho (Educación Católica)</option>
+                  </select>
                 </div>
                 <div>
-                    <span class="block font-serif text-lg font-bold text-church-900 leading-tight">Diócesis de Huacho</span>
-                    <span class="block text-xs text-slate-500 tracking-wider uppercase">Provincia Eclesiástica de Lima</span>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nombre completo</label>
+                  <input id="contact-name" type="text" required placeholder="Ej. Juan Pérez" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-diocese-gold outline-none" />
                 </div>
-            </a>
-
-            <!-- Desktop Nav -->
-            <nav class="hidden md:flex items-center gap-1 lg:gap-2">
-                <a href="#inicio" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-church-700 hover:bg-church-50 transition">Inicio</a>
-                <a href="#nosotros" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-church-700 hover:bg-church-50 transition">Nosotros</a>
-                <a href="#galeria" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-church-700 hover:bg-church-50 transition">Galería</a>
-                <a href="#proyectos" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-church-700 hover:bg-church-50 transition">Proyectos</a>
-                <a href="#contacto" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-church-700 hover:bg-church-50 transition">Contacto</a>
-            </nav>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Correo electrónico</label>
+                  <input id="contact-email" type="email" required placeholder="correo@ejemplo.com" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-diocese-gold outline-none" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Mensaje</label>
+                  <textarea id="contact-msg" rows="4" required placeholder="Escribe aquí tu consulta..." class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-diocese-gold outline-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-diocese-navy hover:bg-diocese-blue text-white font-bold py-3 rounded-lg transition shadow">
+                  Preparar Envío por Correo
+                </button>
+              </form>
+              <div id="contact-feedback" class="hidden mt-4 p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800"></div>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1">
-            <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-church-50 hover:text-church-700">Inicio</a>
-            <a href="#nosotros" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-church-50 hover:text-church-700">Nosotros</a>
-            <a href="#galeria" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-church-50 hover:text-church-700">Galería</a>
-            <a href="#proyectos" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-church-50 hover:text-church-700">Proyectos</a>
-            <a href="#contacto" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-church-50 hover:text-church-700">Contacto</a>
+  </main>
+
+  <!-- PIE DE PÁGINA INSTITUCIONAL -->
+  <footer class="bg-diocese-navy text-slate-300 border-t-4 border-diocese-gold mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="space-y-3">
+        <div class="flex items-center gap-3">
+          <img
+            src="https://iglesia.org.pe/wp-content/uploads/2018/10/HUACHO-LOGO.jpg"
+            alt="Escudo Diócesis de Huacho"
+            class="h-12 w-auto rounded bg-white p-0.5"
+          />
+          <div>
+            <h4 class="font-serif text-base font-bold text-white">Diócesis de Huacho – Perú</h4>
+            <p class="text-xs text-diocese-gold">Dioecesis Huachensis • Fundada en 1958</p>
+          </div>
         </div>
-    </header>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          «Una iglesia cercana, una fe que une». Jurisdicción eclesiástica sufragánea de la Arquidiócesis de Lima al servicio de las provincias de Barranca, Cajatambo, Canta, Huaral, Huaura y Oyón.
+        </p>
+      </div>
 
-    <!-- Content Sections -->
-    <main>
-        <!-- SECCIÓN INICIO -->
-        <section id="inicio" class="relative bg-church-900 text-white min-h-[85vh] flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 opacity-25 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-church-950 via-church-900/80 to-transparent"></div>
-            
-            <div class="relative max-w-5xl mx-auto px-4 py-20 text-center z-10">
-                <span class="inline-block py-1 px-4 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-400 text-sm font-semibold tracking-wider uppercase mb-6 backdrop-blur-sm">
-                    <i class="fas fa-cross mr-2"></i> Diócesis de Huacho – Perú
-                </span>
-                <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-                    Una iglesia cercana, <br><span class="text-gold-500">una fe que une</span>
-                </h1>
-                <p class="max-w-2xl mx-auto text-lg sm:text-xl text-slate-300 mb-10 font-light leading-relaxed">
-                    Jurisdicción territorial de la Iglesia católica que evangeliza las comunidades urbanas, rurales, costeras y andinas del norte del departamento de Lima.
-                </p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#nosotros" class="bg-gold-500 hover:bg-gold-600 text-church-950 font-bold px-8 py-4 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
-                        Conoce la Diócesis
-                    </a>
-                    <a href="#proyectos" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-8 py-4 rounded-xl backdrop-blur-md transition">
-                        Calendario & Obras
-                    </a>
-                </div>
-            </div>
-        </section>
+      <div>
+        <h5 class="font-serif text-sm font-bold text-white uppercase tracking-wider mb-3">Secciones del Portal</h5>
+        <ul class="grid grid-cols-2 gap-2 text-xs">
+          <li><button onclick="navigateTo('inicio')" class="hover:text-diocese-gold transition">Inicio</button></li>
+          <li><button onclick="navigateTo('diocesis')" class="hover:text-diocese-gold transition">Diócesis</button></li>
+          <li><button onclick="navigateTo('templos')" class="hover:text-diocese-gold transition">Templos</button></li>
+          <li><button onclick="navigateTo('celebraciones')" class="hover:text-diocese-gold transition">Celebraciones</button></li>
+          <li><button onclick="navigateTo('autoridades')" class="hover:text-diocese-gold transition">Autoridades</button></li>
+          <li><button onclick="navigateTo('obras')" class="hover:text-diocese-gold transition">Obras</button></li>
+          <li><button onclick="navigateTo('contacto')" class="hover:text-diocese-gold transition">Contacto</button></li>
+        </ul>
+      </div>
 
-        <!-- SECCIÓN NOSOTROS -->
-        <section id="nosotros" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-church-900 mb-4">Nuestra Institución e Historia</h2>
-                <div class="w-20 h-1 bg-gold-500 mx-auto mb-6"></div>
-                <p class="text-slate-600">Fundada el 15 de mayo de 1958 mediante la bula pontificia <em>Egregiam Quidem</em> del papa Pío XII, nuestra diócesis acompaña con vocación pastoral a seis provincias de Lima.</p>
-            </div>
-
-            <!-- Ficha de Identidad -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
-                    <div class="w-12 h-12 rounded-xl bg-church-50 text-church-700 flex items-center justify-center text-xl mb-4 font-bold">
-                        <i class="fas fa-landmark"></i>
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-church-900 mb-2">Creación Canónica</h3>
-                    <p class="text-sm text-slate-600">15 de mayo de 1958 por Bula Pontificia <em>Egregiam Quidem</em> del papa Pío XII.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
-                    <div class="w-12 h-12 rounded-xl bg-church-50 text-church-700 flex items-center justify-center text-xl mb-4 font-bold">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-church-900 mb-2">Jurisdicción Territorial</h3>
-                    <p class="text-sm text-slate-600">Seis provincias del norte de Lima: Barranca, Cajatambo, Canta, Huaral, Huaura y Oyón.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
-                    <div class="w-12 h-12 rounded-xl bg-church-50 text-church-700 flex items-center justify-center text-xl mb-4 font-bold">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-church-900 mb-2">Sede y Catedral</h3>
-                    <p class="text-sm text-slate-600">Ciudad de Huacho. Catedral de San Bartolomé Apóstol, ubicada en la Plaza de Armas.</p>
-                </div>
-            </div>
-
-            <!-- Gobierno Pastoral y Sucesión Episcopal -->
-            <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-slate-200 mb-16">
-                <div class="flex flex-col lg:flex-row gap-12 items-center">
-                    <div class="lg:w-1/2">
-                        <span class="text-gold-600 font-semibold text-sm uppercase tracking-wider">Gobierno Pastoral</span>
-                        <h3 class="font-serif text-3xl font-bold text-church-900 mt-1 mb-4">Administrador Apostólico</h3>
-                        <p class="text-slate-700 font-medium text-lg mb-4">Mons. Luis Alberto Barrera Pacheco, M.C.C.I.</p>
-                        <p class="text-slate-600 mb-6 leading-relaxed">
-                            Diseñado por el papa León XIV en julio de 2026 para garantizar la continuidad del gobierno pastoral y administrativo de la diócesis. Reconocido oficialmente mediante Resolución Suprema N.º 161-2026-JUS.
-                        </p>
-                        <div class="border-l-4 border-gold-500 pl-4 py-1 text-sm text-slate-500 italic">
-                            «Por suerte los alcaldes pasan, los obispos quedan» — Mons. Nemesio Rivera Meza (Primer Obispo).
-                        </div>
-                    </div>
-                    <div class="lg:w-1/2 w-full bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                        <h4 class="font-serif font-bold text-church-900 mb-4 text-center">Sucesión Histórica de Obispos</h4>
-                        <ul class="space-y-3 text-sm">
-                            <li class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-100">
-                                <span class="font-medium text-slate-800">Mons. Nemesio Rivera Meza</span>
-                                <span class="bg-church-50 text-church-700 px-3 py-1 rounded-full font-semibold text-xs">1958–1960</span>
-                            </li>
-                            <li class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-100">
-                                <span class="font-medium text-slate-800">Mons. Pablo Ramírez Taboado, SS.CC.</span>
-                                <span class="bg-church-50 text-church-700 px-3 py-1 rounded-full font-semibold text-xs">1960–1966</span>
-                            </li>
-                            <li class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-100">
-                                <span class="font-medium text-slate-800">Mons. Lorenzo León Alvarado, O. de M.</span>
-                                <span class="bg-church-50 text-church-700 px-3 py-1 rounded-full font-semibold text-xs">1967–2003</span>
-                            </li>
-                            <li class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-100">
-                                <span class="font-medium text-slate-800">Mons. Antonio Santarsiero Rosa, O.S.J.</span>
-                                <span class="bg-church-50 text-church-700 px-3 py-1 rounded-full font-semibold text-xs">2004–2026</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Directorio Parroquial Histórico -->
-            <div>
-                <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
-                    <div>
-                        <h3 class="font-serif text-2xl font-bold text-church-900">Directorio de Parroquias y Templos</h3>
-                        <p class="text-sm text-slate-500">Consulta las 22 parroquias históricas de la jurisdicción diocesana.</p>
-                    </div>
-                    <div class="w-full sm:w-72">
-                        <input type="text" id="search-parish" placeholder="Buscar parroquia o localidad..." class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-church-600 text-sm">
-                    </div>
-                </div>
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse text-sm" id="parishes-table">
-                            <thead>
-                                <tr class="bg-church-900 text-white">
-                                    <th class="p-4 font-semibold">Provincia / Localidad</th>
-                                    <th class="p-4 font-semibold">Denominación Parroquial</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100 text-slate-700">
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Barranca</td><td class="p-4">San Ildefonso de Barranca</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Cajatambo</td><td class="p-4">Santa María Magdalena de Cajatambo</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Canta</td><td class="p-4">Inmaculada Concepción de Canta</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Huaral</td><td class="p-4">San Juan Bautista de Huaral</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Chancay</td><td class="p-4">Inmaculada Concepción de Chancay</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Huacho</td><td class="p-4">San Bartolomé de Huacho</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Huacho</td><td class="p-4">Nuestra Señora de Fátima</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Huacho</td><td class="p-4">Jesús Divino Maestro</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Santa María</td><td class="p-4">La Santa Cruz de Santa María</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Hualmay</td><td class="p-4">Sagrada Familia de Hualmay</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Huaura</td><td class="p-4">San Antonio Abad de Huaura</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Oyón</td><td class="p-4">Nuestra Señora de la Asunción de Oyón</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Paramonga</td><td class="p-4">Nuestra Señora de las Mercedes</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Pativilca</td><td class="p-4">San Jerónimo de Pativilca</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Sayán</td><td class="p-4">San Jerónimo de Sayán</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Churín</td><td class="p-4">San Juan Bautista de Churín</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Végueta</td><td class="p-4">San Juan Bautista de Végueta</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Acos</td><td class="p-4">San Miguel Arcángel de Acos</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Carquín</td><td class="p-4">San Pedro de Carquín</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Supe Puerto</td><td class="p-4">San Pedro de Supe Puerto</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">Supe</td><td class="p-4">Santa María Magdalena de Supe</td></tr>
-                                <tr class="hover:bg-slate-50"><td class="p-4 font-medium">—</td><td class="p-4">Nuestra Señora de Guadalupe</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN GALERÍA -->
-        <section id="galeria" class="py-20 bg-slate-100 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-church-900 mb-4">Galería Patrimonial e Histórica</h2>
-                    <div class="w-20 h-1 bg-gold-500 mx-auto mb-6"></div>
-                    <p class="text-slate-600">Preservando el patrimonio arquitectónico, templos y festividades religiosas de nuestra diócesis.</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Item 1 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group cursor-pointer" onclick="openModal('Catedral de San Bartolomé Apóstol', 'Iglesia principal de la diócesis y sede episcopal en el centro histórico de Huacho, junto a la Plaza de Armas.')">
-                        <div class="h-56 bg-slate-300 relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1548625361-19db2348f951?auto=format&fit=crop&q=80&w=800" alt="Catedral" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                                <span class="text-white text-sm font-medium"><i class="fas fa-search-plus mr-2 text-gold-500"></i> Ver detalles</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <span class="text-xs font-bold text-gold-600 uppercase tracking-wider">Patrimonio Principal</span>
-                            <h3 class="font-serif font-bold text-lg text-church-900 mt-1 mb-2">Catedral de San Bartolomé Apóstol</h3>
-                            <p class="text-sm text-slate-600">Sede litúrgica oficial del Administrador Apostólico en Huacho.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group cursor-pointer" onclick="openModal('Santuario Santísima Cruz de Malpazo', 'Espacio de profunda devoción popular vinculado a la Cuaresma, declarado Patrimonio Cultural de la Nación.')">
-                        <div class="h-56 bg-slate-300 relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1438032005730-c779502df39f?auto=format&fit=crop&q=80&w=800" alt="Cruz de Malpazo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                                <span class="text-white text-sm font-medium"><i class="fas fa-search-plus mr-2 text-gold-500"></i> Ver detalles</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <span class="text-xs font-bold text-gold-600 uppercase tracking-wider">Patrimonio Cultural</span>
-                            <h3 class="font-serif font-bold text-lg text-church-900 mt-1 mb-2">Santuario Cruz de Malpazo</h3>
-                            <p class="text-sm text-slate-600">Festividad tradicional declarada Patrimonio Cultural de la Nación.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 group cursor-pointer" onclick="openModal('Parroquia San Pedro de Carquín', 'Templo parroquial dedicado a San Pedro, pilar de la identidad religiosa de la comunidad pesquera local.')">
-                        <div class="h-56 bg-slate-300 relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&q=80&w=800" alt="Caleta de Carquín" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                                <span class="text-white text-sm font-medium"><i class="fas fa-search-plus mr-2 text-gold-500"></i> Ver detalles</span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <span class="text-xs font-bold text-gold-600 uppercase tracking-wider">Comunidad Costera</span>
-                            <h3 class="font-serif font-bold text-lg text-church-900 mt-1 mb-2">Parroquia San Pedro de Carquín</h3>
-                            <p class="text-sm text-slate-600">Tradición y fervor religioso en la zona pesquera del norte de Lima.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN PROYECTOS (Calendario Litúrgico & Noticias) -->
-        <section id="proyectos" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-church-900 mb-4">Calendario Festivo y Comunicaciones</h2>
-                <div class="w-20 h-1 bg-gold-500 mx-auto mb-6"></div>
-                <p class="text-slate-600">Principales celebraciones litúrgicas y comunicados oficiales de nuestra jurisdicción eclesiástica.</p>
-            </div>
-
-            <!-- Grid de Contenido -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Calendario Litúrgico -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
-                    <h3 class="font-serif text-2xl font-bold text-church-900 mb-6 flex items-center gap-3">
-                        <i class="fas fa-calendar-alt text-gold-500"></i> Festividades Religiosas Anuales
-                    </h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                            <div class="bg-church-700 text-white font-bold px-3 py-2 rounded-xl text-center min-w-[70px]">
-                                <span class="block text-xs uppercase">Mié Cen</span>
-                                <span class="block text-lg">Cua</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-church-900">Festividad Santísima Cruz de Malpazo</h4>
-                                <p class="text-sm text-slate-600">Tradición Cuaresmal en Huacho. Patrimonio Cultural de la Nación.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                            <div class="bg-church-700 text-white font-bold px-3 py-2 rounded-xl text-center min-w-[70px]">
-                                <span class="block text-xs uppercase">24 Ago</span>
-                                <span class="block text-lg">PAT</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-church-900">Fiesta Patronal San Bartolomé Apóstol</h4>
-                                <p class="text-sm text-slate-600">Solemnidad central de la ciudad de Huacho y su Catedral.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                            <div class="bg-church-700 text-white font-bold px-3 py-2 rounded-xl text-center min-w-[70px]">
-                                <span class="block text-xs uppercase">30 Ago</span>
-                                <span class="block text-lg">STA</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-church-900">Festividad de Santa Rosa de Lima</h4>
-                                <p class="text-sm text-slate-600">Celebración litúrgica en honor a la primera santa de América.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                            <div class="bg-church-700 text-white font-bold px-3 py-2 rounded-xl text-center min-w-[70px]">
-                                <span class="block text-xs uppercase">Octubre</span>
-                                <span class="block text-lg">PRO</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-church-900">Procesiones del Señor de los Milagros</h4>
-                                <p class="text-sm text-slate-600">Fervor y devoción con hermandades y cuadrillas diocesanas.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Noticias y Avisos Oficiales -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
-                    <h3 class="font-serif text-2xl font-bold text-church-900 mb-6 flex items-center gap-3">
-                        <i class="fas fa-bullhorn text-gold-500"></i> Comunicados y Obras
-                    </h3>
-                    <div class="space-y-6">
-                        <div class="border-b border-slate-100 pb-4">
-                            <span class="text-xs text-gold-600 font-semibold uppercase">15 de Julio, 2026</span>
-                            <h4 class="font-bold text-church-900 mt-1 mb-1">Nuevo Administrador Apostólico en Huacho</h4>
-                            <p class="text-sm text-slate-600">Mons. Luis Alberto Barrera Pacheco asume el gobierno pastoral tras la aceptación de renuncia de Mons. Antonio Santarsiero.</p>
-                        </div>
-                        <div class="border-b border-slate-100 pb-4">
-                            <span class="text-xs text-gold-600 font-semibold uppercase">Formación Sacerdotal</span>
-                            <h4 class="font-bold text-church-900 mt-1 mb-1">Seminario Diocesano Nuestra Señora del Carmen y San José</h4>
-                            <p class="text-sm text-slate-600">Espacio formativo ubicado en Santa María dedicado al discernimiento y preparación integral de los futuros sacerdotes.</p>
-                        </div>
-                        <div>
-                            <span class="text-xs text-gold-600 font-semibold uppercase">Educación & Cultura</span>
-                            <h4 class="font-bold text-church-900 mt-1 mb-1">Archivo del Obispado y ODEC</h4>
-                            <p class="text-sm text-slate-600">Preservando registros parroquiales desde el siglo XVI y promoviendo la educación religiosa en los colegios de la jurisdicción.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN CONTACTO -->
-        <section id="contacto" class="py-20 bg-church-900 text-white px-4 sm:px-6 lg:px-8">
-            <div class="max-w-5xl mx-auto text-center">
-                <span class="text-gold-500 font-semibold text-sm uppercase tracking-wider">Canales Oficiales</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-2 mb-6">Comunícate con la Diócesis</h2>
-                <p class="text-slate-300 max-w-2xl mx-auto mb-12">
-                    Estamos a tu disposición para consultas pastorales, información institucional y atención a la comunidad en la sede de Huacho.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    <a href="mailto:obispohuacho@gmail.com" class="bg-church-800/80 hover:bg-church-800 border border-church-700 p-6 rounded-2xl transition group">
-                        <div class="w-12 h-12 bg-gold-500/20 text-gold-500 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3 class="font-bold text-white mb-1">Correo Electrónico</h3>
-                        <p class="text-sm text-slate-300">obispohuacho@gmail.com</p>
-                    </a>
-
-                    <a href="https://wa.me/" target="_blank" class="bg-church-800/80 hover:bg-church-800 border border-church-700 p-6 rounded-2xl transition group">
-                        <div class="w-12 h-12 bg-gold-500/20 text-gold-500 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <h3 class="font-bold text-white mb-1">WhatsApp</h3>
-                        <p class="text-sm text-slate-300">Atención directa</p>
-                    </a>
-
-                    <a href="https://facebook.com" target="_blank" class="bg-church-800/80 hover:bg-church-800 border border-church-700 p-6 rounded-2xl transition group">
-                        <div class="w-12 h-12 bg-gold-500/20 text-gold-500 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
-                            <i class="fab fa-facebook-f"></i>
-                        </div>
-                        <h3 class="font-bold text-white mb-1">Facebook</h3>
-                        <p class="text-sm text-slate-300">Diócesis Oficial</p>
-                    </a>
-
-                    <a href="https://instagram.com" target="_blank" class="bg-church-800/80 hover:bg-church-800 border border-church-700 p-6 rounded-2xl transition group">
-                        <div class="w-12 h-12 bg-gold-500/20 text-gold-500 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <h3 class="font-bold text-white mb-1">Instagram</h3>
-                        <p class="text-sm text-slate-300">@diocesisdehuacho</p>
-                    </a>
-                </div>
-
-                <div class="text-sm text-slate-400 border-t border-church-800 pt-8">
-                    <p>Obispado de Huacho • Plaza de Armas s/n, Huacho, Perú • Teléfono: (01) 239-3011</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-church-950 text-slate-400 py-6 text-center text-xs">
-        <p>&copy; 2026 Diócesis de Huacho – Perú. Todos los derechos reservados.</p>
-    </footer>
-
-    <!-- Modal para Galería -->
-    <div id="image-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 text-slate-800 relative shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl font-bold p-2">
-                <i class="fas fa-times"></i>
-            </button>
-            <h3 id="modal-title" class="font-serif text-2xl font-bold text-church-900 mb-2">Título</h3>
-            <p id="modal-desc" class="text-slate-600 text-sm leading-relaxed mb-6">Descripción...</p>
-            <button onclick="closeModal()" class="w-full bg-church-700 text-white font-semibold py-3 rounded-xl hover:bg-church-800 transition">Cerrar</button>
-        </div>
+      <div class="space-y-2 text-xs">
+        <h5 class="font-serif text-sm font-bold text-white uppercase tracking-wider mb-3">Sede Episcopal</h5>
+        <p>Plaza de Armas s/n, Huacho – Lima, Perú</p>
+        <p>Apartado Postal 104</p>
+        <p>Teléfono: (01) 239-3011</p>
+        <p>Correo: obispohuacho@gmail.com</p>
+      </div>
     </div>
+    <div class="bg-slate-950/50 py-4 text-center text-xs text-slate-400 border-t border-white/10">
+      © 2026 Diócesis de Huacho – Perú. Todos los derechos reservados.
+    </div>
+  </footer>
 
-    <!-- Scripts de interactividad -->
-    <script>
-        // Menú móvil
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
+  <!-- MODAL PARA VISOR DE IMÁGENES (<1080px, proporción original) -->
+  <div id="image-modal" onclick="closeImageModal()" class="fixed inset-0 bg-black/85 z-50 hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div onclick="event.stopPropagation()" class="relative bg-white rounded-2xl p-3 max-w-4xl w-full shadow-2xl">
+      <button onclick="closeImageModal()" aria-label="Cerrar imagen" class="absolute -top-3 -right-3 bg-diocese-navy text-white w-9 h-9 rounded-full font-bold shadow-lg hover:bg-diocese-burgundy transition">
+        ✕
+      </button>
+      <div class="flex items-center justify-center bg-slate-100 rounded-xl overflow-hidden max-h-[80vh]">
+        <img id="modal-img" src="" alt="" class="img-bounded max-h-[78vh]" />
+      </div>
+      <p id="modal-caption" class="text-center text-xs sm:text-sm font-semibold text-diocese-navy mt-3"></p>
+    </div>
+  </div>
 
-        // Buscador de parroquias
-        const searchInput = document.getElementById('search-parish');
-        const table = document.getElementById('parishes-table');
-        const rows = table.getElementsByTagName('tr');
+  <!-- SCRIPTS DE DATOS Y NAVEGACIÓN -->
+  <script>
+    const parishesData = [
+      { loc: "Barranca", name: "San Ildefonso de Barranca" },
+      { loc: "Cajatambo", name: "Santa María Magdalena de Cajatambo" },
+      { loc: "Canta", name: "Inmaculada Concepción de Canta" },
+      { loc: "Huaral", name: "San Juan Bautista de Huaral" },
+      { loc: "Chancay", name: "Inmaculada Concepción de Chancay" },
+      { loc: "Huacho", name: "San Bartolomé de Huacho" },
+      { loc: "Huacho", name: "Nuestra Señora de Fátima" },
+      { loc: "Huacho", name: "Jesús Divino Maestro" },
+      { loc: "Santa María", name: "La Santa Cruz de Santa María" },
+      { loc: "Hualmay", name: "Sagrada Familia de Hualmay" },
+      { loc: "Huaura", name: "San Antonio Abad de Huaura" },
+      { loc: "Oyón", name: "Nuestra Señora de la Asunción de Oyón" },
+      { loc: "Paramonga", name: "Nuestra Señora de las Mercedes" },
+      { loc: "Pativilca", name: "San Jerónimo de Pativilca" },
+      { loc: "Sayán", name: "San Jerónimo de Sayán" },
+      { loc: "Churín", name: "San Juan Bautista de Churín" },
+      { loc: "Végueta", name: "San Juan Bautista de Végueta" },
+      { loc: "Acos", name: "San Miguel Arcángel de Acos" },
+      { loc: "Carquín", name: "San Pedro de Carquín" },
+      { loc: "Supe Puerto", name: "San Pedro de Supe Puerto" },
+      { loc: "Supe", name: "Santa María Magdalena de Supe" },
+      { loc: "—", name: "Nuestra Señora de Guadalupe" }
+    ];
 
-        searchInput.addEventListener('keyup', (e) => {
-            const term = e.target.value.toLowerCase();
-            for (let i = 1; i < rows.length; i++) {
-                const rowText = rows[i].textContent.toLowerCase();
-                if (rowText.includes(term)) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
-                }
-            }
-        });
+    const templesData = [
+      {
+        code: "5.1",
+        title: "Catedral de San Bartolomé Apóstol",
+        location: "Huacho (Centro Histórico)",
+        desc: "Es la iglesia principal de la diócesis y sede de las celebraciones litúrgicas presididas por el obispo o el Administrador Apostólico. Está ubicada en el centro histórico de Huacho, junto a la Plaza de Armas, dedicada a San Bartolomé Apóstol, patrono de la ciudad.",
+        img: "https://images.openai.com/static-rsc-4/VgKrH1ZH2RKGLwU55-ou6ohPslmJYb5qvpjlfTzEe0-EVUvZhG04jDNXoOMteHWHok9kQVBCgpXw64-H4GQaKvmTo3h9ucW_0qfNvvMcXdAQgIiDpCDBU3rPK0ibKV2X26_v4TTjOq25CXRjasqRC6Z1NasjxDYqmOizhZqrYhY?purpose=inline"
+      },
+      {
+        code: "5.2",
+        title: "Iglesia de Nuestra Señora de la Merced",
+        location: "Huacho",
+        desc: "Templo vinculado a la tradición de la devoción mariana y a la presencia histórica de la espiritualidad mercedaria en la ciudad.",
+        img: "https://images.openai.com/static-rsc-4/0m7mMnc4vzE72wucvKvm_8MyKKObtSsI-6374ErSWYkwvcYN5Y9Uj0FmTfunXhx8PXgBLwqblgVGBMDtLyg6yTI2mfY7kRAy5h4bQfoA4G2LuX7x8Q_gxCFizmbai9y7sLdEl4S_hzHczCv7w83gKT32Ta5lTPrjyERaLTTncgE?purpose=inline"
+      },
+      {
+        code: "5.3",
+        title: "Iglesia de Santa María",
+        location: "Distrito de Santa María",
+        desc: "Templo de interés religioso y patrimonial ubicado en el distrito de Santa María, en las proximidades de Huacho. Su ubicación elevada constituye también un punto de referencia paisajístico de la localidad.",
+        img: "https://images.openai.com/static-rsc-4/vIfYKTN_GmV_QyFqIojY-ffDZ1wJb_NKurwsmwS2chcF451GOqOpJClbRHQzTePwp5g6xUceUo7z1FhGMJwBIflA7-auGipFgBpxHwB_S5uU8RR_njqvtD3fytLQxD7chRXt2uDn78agTZ9dM9wgQzw5BlbF_VxCGrbgQrFPhUU?purpose=inline"
+      },
+      {
+        code: "5.4",
+        title: "Santuario de la Santísima Cruz de Malpazo",
+        location: "Huacho",
+        desc: "Uno de los principales espacios de devoción popular de Huacho. Su festividad fue declarada Patrimonio Cultural de la Nación mediante Resolución Viceministerial N.º 146-2018-VMPCIC-MC, del 27 de agosto de 2018.",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDx4chLKcaDe5hVLhLLPUr61f2ipnNuwKYfXxrn9k1234lKw2XyuMT_IY&s=10"
+      },
+      {
+        code: "5.5",
+        title: "Parroquia San Pedro",
+        location: "Caleta de Carquín",
+        desc: "Templo parroquial dedicado a San Pedro Apóstol, estrechamente vinculado a la identidad religiosa y marítima de la comunidad pesquera de Carquín.",
+        img: "https://images.openai.com/static-rsc-4/_RBkAbmK_ZsliLn7r5FFCy5Cc_r9oLorNW9BC_jxFOFdEIunp6hdeup4o4wF60bIi6SeDUEn6fIGoPkF3Jm07KCRdxYVL6kbz1GwhPYp26678seJsj3zi9WQB--N9ReOin320MRMAdZWhbSZL9CJ9AO_aVD1Qp3Nphg-bwQHKrg?purpose=inline"
+      },
+      {
+        code: "5.6",
+        title: "Parroquia San Antonio Abad",
+        location: "Huaura",
+        desc: "Templo representativo de la tradición católica de Huaura, localidad de gran importancia histórica para toda la región.",
+        img: "https://images.openai.com/static-rsc-4/5KNqpjdfeWlCoFf4ro3MlAlIAmdugkQD7XNhg2KB08NW58WqxFCtUeXbog3CZc4eJISj5G8gVl5Bf-PF_rKHz7R-m7AtYoa9UgZPgGwgz6izfNz5C0FkZ_ZdiOa_klg4PVBMoFQ6Da4B1W1LkujwD7RJk707fPYjC6sk98SAMHA?purpose=inline"
+      }
+    ];
 
-        // Modal galería
-        function openModal(title, desc) {
-            document.getElementById('modal-title').textContent = title;
-            document.getElementById('modal-desc').textContent = desc;
-            document.getElementById('image-modal').classList.remove('hidden');
+    const celebrationsData = [
+      {
+        code: "6.1",
+        title: "Fiesta de San Bartolomé Apóstol",
+        date: "24 de agosto",
+        category: "patronal",
+        desc: "Festividad patronal de Huacho, en honor a San Bartolomé Apóstol. Comprende actividades religiosas, procesiones y manifestaciones culturales y populares.",
+        img: "https://images.openai.com/static-rsc-4/VgKrH1ZH2RKGLwU55-ou6ohPslmJYb5qvpjlfTzEe0-EVUvZhG04jDNXoOMteHWHok9kQVBCgpXw64-H4GQaKvmTo3h9ucW_0qfNvvMcXdAQgIiDpCDBU3rPK0ibKV2X26_v4TTjOq25CXRjasqRC6Z1NasjxDYqmOizhZqrYhY?purpose=inline"
+      },
+      {
+        code: "6.2",
+        title: "Festividad de la Santísima Cruz de Malpazo",
+        date: "Miércoles de Ceniza y fechas previas",
+        category: "liturgica",
+        desc: "Tradición religiosa que se desarrolla en torno a la Cuaresma con participación de devotos, familias y organizaciones tradicionales. Patrimonio Cultural de la Nación.",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDx4chLKcaDe5hVLhLLPUr61f2ipnNuwKYfXxrn9k1234lKw2XyuMT_IY&s=10"
+      },
+      {
+        code: "6.3",
+        title: "Semana Santa en Huacho y Provincias",
+        date: "Marzo / abril (fecha variable)",
+        category: "liturgica",
+        desc: "Conmemoración de la pasión, muerte y resurrección de Jesucristo mediante procesiones, viacrucis, celebraciones litúrgicas y actividades de oración.",
+        img: "https://images.openai.com/static-rsc-4/nyOqVuumN4dx_TioWOzHN5DE3rX-NALDn5rAw1nUef56IBdACPgem2ewjxmaHRpvwBGDoYbgwlwZQbV3MarIk5AurcjS_usx-q5NsNrPRtiUy0Z1mrD5nNp8D8AnphmWS3H5TbDkmMPyJv7KqpnBDEEV4Avk2vsZkJhBFkPN2yU?purpose=inline"
+      },
+      {
+        code: "6.4",
+        title: "Fiesta de Nuestra Señora del Carmen",
+        date: "16 de julio",
+        category: "mariana",
+        desc: "Celebración mariana de gran arraigo en el Perú, que forma parte de la tradición devocional de diversas comunidades de la jurisdicción diocesana.",
+        img: "https://images.openai.com/static-rsc-4/cTVjRVRPB7Z_X4KwLIFVvPjOSiVNdLK2oRJJ2fJ-FcAOTgjGCwg8__gOJRdP7b5O2egBE2mdVo09xgu6Ie_1mMYXnyyaagUSSkgu5iDOxYqjl6jEkZgpY71iNse3vFL6ZyKlfA0SoAWTdFV72WacAgYM4lvbukIHzsJafZNfl8w?purpose=inline"
+      },
+      {
+        code: "6.5",
+        title: "Procesiones del Señor de los Milagros",
+        date: "Octubre",
+        category: "liturgica",
+        desc: "Celebración de profunda tradición católica con participación de hermandades, cuadrillas de cargadores, sahumadoras y devotos.",
+        img: "https://images.openai.com/static-rsc-4/B1GqrzggD9Bf2wE84FVu_yOB7BUSXsExgQgOFZwIYAQWUPI-IbzwOIhN2Ofzom56lc5CC9Gp8S11Hwc3hvuYlDyWtjWpHQ_XgLo5a-QUXZ6IXFW3DOnUSWc-GOxeUA3yAQmgp4sfi6dPYYFujwEH1JWw9quMhDD8sV5RQvSNS10?purpose=inline"
+      },
+      {
+        code: "6.6",
+        title: "Festividad de Santa Rosa de Lima",
+        date: "30 de agosto",
+        category: "patronal",
+        desc: "Celebración dedicada a la primera santa de América, cuya devoción está presente en numerosas comunidades y parroquias del territorio peruano.",
+        img: "https://images.openai.com/static-rsc-4/AT2SsE_cYCKTDtZtZ0740karOam1rHozKStLzZkVu1wvqoFCaf3LKzFPmF9C8C3P0J9Jajp4IeoY6UwqqJAwpP_OnyCAVqrrXurjPBf4NonbcE8O9XS0YEVh0oAO95NI-Zq60HXx004g8UErNhezauhAfbBIX84yWhTEV76Ii9w?purpose=inline"
+      },
+      {
+        code: "6.7",
+        title: "Solemnidad de la Inmaculada Concepción",
+        date: "8 de diciembre",
+        category: "mariana",
+        desc: "Fiesta mariana especialmente vinculada a las comunidades parroquiales que tienen esta advocación como titular, entre ellas Canta y Chancay.",
+        img: "https://images.openai.com/static-rsc-4/nLC9GRbVXWWSowCwBzu36xgV7vm-2dPbgbBwvm15MuALHy4LqHfDstT26R46eoQaYDm7wL6nkRenfRsvU9bFNM7c4ry-Bevpf1Sxrh2chk79oIfIxgD5yYMNPqMzhcL3ydeLGT_p-lg_0GdZklzX_-l93N03KF3LDd8vB11HH90?purpose=inline"
+      }
+    ];
+
+    let activeCelFilter = 'all';
+
+    function navigateTo(pageId, pushHash = true) {
+      const validPages = ['inicio', 'diocesis', 'templos', 'celebraciones', 'autoridades', 'obras', 'contacto'];
+      if (!validPages.includes(pageId)) pageId = 'inicio';
+
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+      const target = document.getElementById('page-' + pageId);
+      if (target) target.classList.add('active');
+
+      // Actualizar estilo activo en PC
+      document.querySelectorAll('.nav-link').forEach(btn => {
+        if (btn.dataset.nav === pageId) {
+          btn.classList.add('bg-diocese-navy', 'text-white');
+          btn.classList.remove('text-slate-700', 'hover:bg-slate-100');
+        } else {
+          btn.classList.remove('bg-diocese-navy', 'text-white');
+          btn.classList.add('text-slate-700', 'hover:bg-slate-100');
         }
+      });
 
-        function closeModal() {
-            document.getElementById('image-modal').classList.add('hidden');
+      // Actualizar estilo activo en Móvil
+      document.querySelectorAll('.mobile-nav-link').forEach(btn => {
+        if (btn.dataset.nav === pageId) {
+          btn.classList.add('bg-diocese-navy', 'text-white');
+          btn.classList.remove('text-slate-700', 'hover:bg-slate-100');
+        } else {
+          btn.classList.remove('bg-diocese-navy', 'text-white');
+          btn.classList.add('text-slate-700', 'hover:bg-slate-100');
         }
-    </script>
+      });
+
+      if (pushHash) {
+        history.pushState(null, '', '#' + pageId);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('icon-open');
+      const closeIcon = document.getElementById('icon-close');
+      menu.classList.toggle('hidden');
+      openIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    }
+
+    function filterParishes() {
+      const q = document.getElementById('parish-search').value.toLowerCase().trim();
+      const tbody = document.getElementById('parish-table-body');
+      const filtered = parishesData.filter(p =>
+        p.loc.toLowerCase().includes(q) || p.name.toLowerCase().includes(q)
+      );
+      tbody.innerHTML = filtered.map((p, idx) => `
+        <tr class="hover:bg-slate-50">
+          <td class="px-4 py-2.5 text-slate-400 font-mono text-xs">${idx + 1}</td>
+          <td class="px-4 py-2.5 font-semibold text-diocese-navy">${p.loc}</td>
+          <td class="px-4 py-2.5 text-slate-700">${p.name}</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderTemples() {
+      const grid = document.getElementById('temples-grid');
+      grid.innerHTML = templesData.map(t => `
+        <article class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+          <div class="img-card-frame h-56 p-2 border-b border-slate-100">
+            <img
+              src="${t.img}"
+              alt="${t.title}"
+              onclick="openImageModal(this.src, '${t.code}. ${t.title} – ${t.location}')"
+              class="img-bounded max-h-52 cursor-zoom-in rounded-lg"
+              onerror="this.src='https://via.placeholder.com/600x400/0F2537/FFFFFF?text=Templo+Diocesano'"
+            />
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-xs font-bold uppercase text-diocese-gold">${t.code} • ${t.location}</span>
+              <h3 class="font-serif text-lg font-bold text-diocese-navy mt-1">${t.title}</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">${t.desc}</p>
+            </div>
+            <button onclick="openImageModal('${t.img}', '${t.code}. ${t.title} – ${t.location}')" class="text-xs font-bold text-diocese-blue hover:text-diocese-navy text-left pt-1">
+              Ampliar fotografía →
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function filterCelebrations(cat) {
+      activeCelFilter = cat;
+      document.querySelectorAll('.cel-filter-btn').forEach(btn => {
+        if (btn.dataset.celFilter === cat) {
+          btn.classList.add('bg-diocese-navy', 'text-white');
+          btn.classList.remove('bg-slate-100', 'text-slate-700');
+        } else {
+          btn.classList.remove('bg-diocese-navy', 'text-white');
+          btn.classList.add('bg-slate-100', 'text-slate-700');
+        }
+      });
+      renderCelebrations();
+    }
+
+    function renderCelebrations() {
+      const q = document.getElementById('cel-search').value.toLowerCase().trim();
+      const grid = document.getElementById('celebrations-grid');
+      const filtered = celebrationsData.filter(c => {
+        const matchCat = activeCelFilter === 'all' || c.category === activeCelFilter;
+        const matchQuery = c.title.toLowerCase().includes(q) || c.date.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q);
+        return matchCat && matchQuery;
+      });
+      grid.innerHTML = filtered.map(c => `
+        <article class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+          <div class="img-card-frame h-52 p-2 border-b border-slate-100">
+            <img
+              src="${c.img}"
+              alt="${c.title}"
+              onclick="openImageModal(this.src, '${c.code}. ${c.title} (${c.date})')"
+              class="img-bounded max-h-48 cursor-zoom-in rounded-lg"
+              onerror="this.src='https://via.placeholder.com/600x400/1B3B5A/FFFFFF?text=Festividad'"
+            />
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between space-y-2">
+            <div>
+              <span class="inline-block bg-diocese-goldLight text-diocese-navy text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                ${c.date}
+              </span>
+              <h3 class="font-serif text-lg font-bold text-diocese-navy mt-2">${c.code}. ${c.title}</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">${c.desc}</p>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function openImageModal(src, caption) {
+      const modal = document.getElementById('image-modal');
+      document.getElementById('modal-img').src = src;
+      document.getElementById('modal-caption').textContent = caption || '';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeImageModal() {
+      const modal = document.getElementById('image-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const area = document.getElementById('contact-area').value;
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const msg = document.getElementById('contact-msg').value;
+      const subject = encodeURIComponent('Consulta Web – Diócesis de Huacho (' + name + ')');
+      const body = encodeURIComponent('Nombre: ' + name + '\nCorreo: ' + email + '\n\nMensaje:\n' + msg);
+      const feedback = document.getElementById('contact-feedback');
+      feedback.textContent = 'Abriendo tu cliente de correo para enviar la consulta a ' + area + '...';
+      feedback.classList.remove('hidden');
+      window.location.href = 'mailto:' + area + '?subject=' + subject + '&body=' + body;
+    }
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '') || 'inicio';
+      navigateTo(hash, false);
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      filterParishes();
+      renderTemples();
+      renderCelebrations();
+      const initialHash = window.location.hash.replace('#', '') || 'inicio';
+      navigateTo(initialHash, false);
+    });
+  </script>
 </body>
 </html>
